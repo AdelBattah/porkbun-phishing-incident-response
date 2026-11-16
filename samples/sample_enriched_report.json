@@ -1,0 +1,201 @@
+[
+  {
+    "file": "incident_email1_zoho_relay_sanitized.eml",
+    "assessment": {
+      "verdict": "CRITICAL / CONFIRMED PHISHING",
+      "risk_score": 190,
+      "mitre_attack": [
+        "T1036.005 - Masquerading: Match Legitimate Name or Location",
+        "T1114 - Email Collection",
+        "T1566.002 - Spearphishing Link",
+        "T1583.006 - Acquire Infrastructure: Web Services",
+        "T1588.004 - Obtain Capabilities: Digital Certificates"
+      ],
+      "triggered_landmarks": [
+        "[+25] Reply-To Mismatch: From 'sender[.]zohobooks[.]com' vs Reply-To 'mariakulac[.]at'",
+        "[+20] Abused SaaS Relay Origin: Sent via 'sender[.]zohobooks[.]com'",
+        "[+35] Brand Impersonation: Mentions 'Porkbun' from 'sender[.]zohobooks[.]com'",
+        "[+40] Off-Brand Payload Link: Mentions 'Porkbun' -> [wwaccoountv[.]ecuiliber[.]com]",
+        "[+25] Repeated-Character Typosquatting: 'wwaccoountv[.]ecuiliber[.]com'",
+        "[+30] Newly Provisioned TLS Certificate (22.2h old via Let's Encrypt) on wwaccoountv[.]ecuiliber[.]com",
+        "[+15] Urgency / Credential Lure: unable to be processed, billing attempt, review payment method"
+      ]
+    },
+    "headers": {
+      "subject": "Keep your services running smoothly",
+      "date": "Sat, 14 Nov 2026 18:33:47 -0800",
+      "from": "Support Team <message-service@sender.zohobooks.com>",
+      "reply_to": "analyst-trap@victim-domain.internal",
+      "return_path": "<analyst-trap@victim-domain.internal>",
+      "return_path_unwrapped": "sender+fbacec90-e09c-11f1-81ba-fae9afc80e45_vt1@sender.zohobooks.com",
+      "to": "analyst-trap@victim-domain.internal",
+      "message_id": "<2d6f.38b26ff.m1.fbacec90-e09c-11f1-81ba-fae9afc80e45.1a1dd0db9d9@sender.zohobooks.com>",
+      "zoho_account_id": "122feb0f67720a497318ce0243efc4d97717d1c59e729437ed0581d34daf42c0",
+      "authentication_results": [
+        "mx.google.com;       dkim=pass header.i=@sender.zohobooks.com header.s=296424 header.b=H+A1uK0G;       arc=pass (i=1 spf=pass spfdomain=sender.zohobooks.com dkim=pass dkdomain=sender.zohobooks.com dmarc=pass fromdomain=sender.zohobooks.com>);       spf=pass (google.com: domain of srs0=7hrs=je=sender.zohobooks.com=sender+fbacec90-e09c-11f1-81ba-fae9afc80e45_vt1@porkbun-email.com designates 44.226.226.6 as permitted sender) smtp.mailfrom=\"SRS0=7hRS=JE=sender.zohobooks.com=sender+fbacec90-e09c-11f1-81ba-fae9afc80e45_vt1@porkbun-email.com\";       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=sender.zohobooks.com",
+        "fwd1.porkbun.com;\tdkim=pass header.d=sender.zohobooks.com header.s=296424 header.b=H+A1uK0G;\tdmarc=pass (policy=quarantine) header.from=sender.zohobooks.com;\tarc=pass (\"zohomail360.com:s=zohoarc:i=1\");\tspf=pass (fwd1.porkbun.com: domain of sender+fbacec90-e09c-11f1-81ba-fae9afc80e45_vt1@sender.zohobooks.com designates 135.84.80.72 as permitted sender) smtp.mailfrom=sender+fbacec90-e09c-11f1-81ba-fae9afc80e45_vt1@sender.zohobooks.com"
+      ],
+      "dkim_signatures": [
+        "a=rsa-sha256; b=H+A1uK0GcnRryRhqnbtNE9FE4i6K6iby3Gm9CHJAv6pjyAfsZ4JhcFewLpQuLAizqT673/Tobcqbg39ZwDt8YlfPk6OIWLRXRd3IIOaKho/Zv3zZromusuiXnPGqXh7kEnKi0l9B6QG3SVNDOImN0JuIhCmOMd2pab0DnysExjQ=; c=relaxed/relaxed; s=296424; d=sender.zohobooks.com; v=1; bh=XBs88hI6oO0hSfuZNsZdY/bt6M8siqxTTjHJfpPYdfU=; h=date:from:reply-to:to:message-id:subject:mime-version:content-type:date:from:reply-to:to:message-id:subject;"
+      ],
+      "received_hops": [
+        "by 2002:a05:6400:8584:20b0:2e8:3c58:2cfc with SMTP id x4-n2csp937443eck;        Sat, 14 Nov 2026 18:33:51 -0800 (PST)",
+        "from fwd1.porkbun.com (fwd1.porkbun.com. [44.226.226.6])        by mx.google.com with ESMTPS id d2e1a72fcca58-8bed485e766si14888639b3a.183.2026.11.14.18.33.50        for <analyst-trap@victim-soc.internal>        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);        Sat, 14 Nov 2026 18:33:50 -0800 (PST)",
+        "from system-72.transmail.net (system-72.transmail.net [135.84.80.72])\t(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)\t key-exchange X25519 server-signature RSA-PSS (2048 bits))\t(Client did not present a certificate)\tby fwd1.porkbun.com (Postfix) with ESMTPS id 48B70401766C\tfor <billing-contact@victim-domain.internal>; Sun, 15 Nov 2026 02:33:49 +0000 (UTC)",
+        "by smtp.zohomail.com with SMTPS id 1794710027877128.9587023643354;\tSat, 14 Nov 2026 18:33:47 -0800 (PST)"
+      ]
+    },
+    "iocs": {
+      "urls_defanged": [
+        "hxxps://wwaccoountv[.]ecuiliber[.]com/",
+        "hxxps://zohosecurepay[.]com/books/ahram/secure?CInvoiceID=2-eaa3590dd0abe04ab0b25c3a6dab7be95d2d533ead9f8df8013a599475254f32f61e3de72e1a1982e06aa297db7dd04909b882cfff4c4f99ccec259a79e4decb98e1fb71080bbb7a"
+      ],
+      "urls_raw": [
+        "https://wwaccoountv.ecuiliber.com/",
+        "https://zohosecurepay.com/books/ahram/secure?CInvoiceID=2-eaa3590dd0abe04ab0b25c3a6dab7be95d2d533ead9f8df8013a599475254f32f61e3de72e1a1982e06aa297db7dd04909b882cfff4c4f99ccec259a79e4decb98e1fb71080bbb7a"
+      ],
+      "ipv4_defanged": [
+        "135[.]84[.]80[.]72",
+        "44[.]226[.]226[.]6"
+      ],
+      "ipv4_raw": [
+        "135.84.80.72",
+        "44.226.226.6"
+      ],
+      "email_addresses": [
+        "2d6f.38b26ff.m1.fbacec90-e09c-11f1-81ba-fae9afc80e45.1a1dd0db9d9@sender.zohobooks.com",
+        "analyst-trap@victim-domain.internal",
+        "analyst-trap@victim-soc.internal",
+        "message-service@sender.zohobooks.com",
+        "support@porkbun.com",
+        "vt1@porkbun-email.com",
+        "vt1@sender.zohobooks.com"
+      ],
+      "saas_tenant_ids": [
+        "944707351"
+      ],
+      "attachments": []
+    },
+    "active_enrichment": [
+      {
+        "host": "wwaccoountv[.]ecuiliber[.]com",
+        "host_raw": "wwaccoountv.ecuiliber.com",
+        "ips": [
+          "50.6.207.121"
+        ],
+        "ptr_records": [
+          "50.6.207.121 -> 50-6-207-121[.]unifiedlayer[.]com"
+        ],
+        "apex_ips": [
+          "50.6.207.121"
+        ],
+        "split_infra": false,
+        "tls_age_hours": 22.2,
+        "tls_issuer": "Let's Encrypt",
+        "tls_cert_valid": true
+      },
+      {
+        "host": "zohosecurepay[.]com",
+        "host_raw": "zohosecurepay.com",
+        "ips": [
+          "136.143.190.83"
+        ],
+        "ptr_records": [],
+        "apex_ips": [],
+        "split_infra": false,
+        "tls_age_hours": 3133.8,
+        "tls_issuer": "Sectigo Limited",
+        "tls_cert_valid": true
+      }
+    ]
+  },
+  {
+    "file": "incident_email2_direct_sanitized.eml",
+    "assessment": {
+      "verdict": "CRITICAL / CONFIRMED PHISHING",
+      "risk_score": 160,
+      "mitre_attack": [
+        "T1036.005 - Masquerading: Match Legitimate Name or Location",
+        "T1566.002 - Spearphishing Link",
+        "T1583.001 - Acquire Infrastructure: Domains",
+        "T1588.004 - Obtain Capabilities: Digital Certificates"
+      ],
+      "triggered_landmarks": [
+        "[+15] High-Abuse Sender TLD: 'paomusic[.]info'",
+        "[+35] Brand Impersonation: Mentions 'Porkbun' from 'paomusic[.]info'",
+        "[+40] Off-Brand Payload Link: Mentions 'Porkbun' -> [wwaccoountv[.]ecuiliber[.]com]",
+        "[+25] Repeated-Character Typosquatting: 'wwaccoountv[.]ecuiliber[.]com'",
+        "[+30] Newly Provisioned TLS Certificate (22.2h old via Let's Encrypt) on wwaccoountv[.]ecuiliber[.]com",
+        "[+15] Urgency / Credential Lure: unable to be processed, billing attempt, review payment method"
+      ]
+    },
+    "headers": {
+      "subject": "Keep your services running smoothly",
+      "date": "Sun, 15 Nov 2026 23:57:54 +0000",
+      "from": "Support Team <admin@paomusic.info>",
+      "reply_to": "",
+      "return_path": "<analyst-trap@victim-domain.internal>",
+      "return_path_unwrapped": "admin@paomusic.info",
+      "to": "analyst-trap@victim-domain.internal",
+      "message_id": "<20261115235601.E6C5836FE1703265@paomusic.info>",
+      "zoho_account_id": "",
+      "authentication_results": [
+        "mx.google.com;       dkim=pass header.i=@paomusic.info header.s=dkim header.b=FRcWqch5;       spf=pass (google.com: domain of srs0=9a4x=je=paomusic.info=admin@porkbun-email.com designates 44.226.226.6 as permitted sender) smtp.mailfrom=\"SRS0=9A4x=JE=paomusic.info=admin@porkbun-email.com\";       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=paomusic.info",
+        "fwd1.porkbun.com;\tdkim=pass header.d=paomusic.info header.s=dkim header.b=FRcWqch5;\tdmarc=pass (policy=none) header.from=paomusic.info;\tspf=pass (fwd1.porkbun.com: domain of admin@paomusic.info designates 213.156.134.117 as permitted sender) smtp.mailfrom=admin@paomusic.info"
+      ],
+      "dkim_signatures": [
+        "v=1; a=rsa-sha256; c=relaxed/relaxed; s=dkim; d=paomusic.info; h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type: Content-Transfer-Encoding; i=admin@paomusic.info; bh=8q194/8uUG8Rs1p+dkHQs3fXYcGvsR3AQGcWAG/Fdgk=; b=FRcWqch5eghSRDqNe15AtBJtTXc5imlEtoxcPQGG5P0nkanB96e+/yUhTSkBR8oZorBLWjaWns2W   KcIR9RHRNHhhSKOovIY/VNm4X/4iUuVxDzV04CRE9Kk5HHRCAxtmGaiQlweIJgNERAuefAyut0Ex   bDHXw9rYvUApAR9l189tfuuttPI0kfmdwV4m9v8kFKJykURSsjUtmTYwbMbTGsm7x6vN25Jv5GX2   qjxftnBt5fSduR/7vHVc48JgKRdjphY9+EtUevZSCZgId7tRosqnjXGYLYj+hxbMaGyjZOnabTLK   DRi/dewSESY+RYzdigrls8nUmBESxepPq0Ir5g=="
+      ],
+      "received_hops": [
+        "by 2002:a05:6400:8584:20b0:2e8:3c58:2cfc with SMTP id x4-n2csp1847121eck;        Sun, 15 Nov 2026 15:58:43 -0800 (PST)",
+        "from fwd1.porkbun.com (fwd1.porkbun.com. [44.226.226.6])        by mx.google.com with ESMTPS id 41be03b00d2f7-cddc18b378fsi13443599a12.276.2026.11.15.15.58.42        for <analyst-trap@victim-soc.internal>        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);        Sun, 15 Nov 2026 15:58:42 -0800 (PST)",
+        "from mail.paomusic.info (vps125957.serveur-vps.net [213.156.134.117])\t(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)\t key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)\t(Client did not present a certificate)\tby fwd1.porkbun.com (Postfix) with ESMTPS id 1FEBD40177A1\tfor <billing-contact@victim-domain.internal>; Sun, 15 Nov 2026 23:58:41 +0000 (UTC)"
+      ]
+    },
+    "iocs": {
+      "urls_defanged": [
+        "hxxps://wwaccoountv[.]ecuiliber[.]com/"
+      ],
+      "urls_raw": [
+        "https://wwaccoountv.ecuiliber.com/"
+      ],
+      "ipv4_defanged": [
+        "213[.]156[.]134[.]117",
+        "44[.]226[.]226[.]6"
+      ],
+      "ipv4_raw": [
+        "213.156.134.117",
+        "44.226.226.6"
+      ],
+      "email_addresses": [
+        "20261115235601.E6C5836FE1703265@paomusic.info",
+        "admin@paomusic.info",
+        "admin@porkbun-email.com",
+        "analyst-trap@victim-domain.internal",
+        "analyst-trap@victim-soc.internal",
+        "support@porkbun.com"
+      ],
+      "saas_tenant_ids": [],
+      "attachments": []
+    },
+    "active_enrichment": [
+      {
+        "host": "wwaccoountv[.]ecuiliber[.]com",
+        "host_raw": "wwaccoountv.ecuiliber.com",
+        "ips": [
+          "50.6.207.121"
+        ],
+        "ptr_records": [
+          "50.6.207.121 -> 50-6-207-121[.]unifiedlayer[.]com"
+        ],
+        "apex_ips": [
+          "50.6.207.121"
+        ],
+        "split_infra": false,
+        "tls_age_hours": 22.2,
+        "tls_issuer": "Let's Encrypt",
+        "tls_cert_valid": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,47 @@
+title: Suspicious Brand Impersonation Originating from Legitimate SaaS Transactional Relay
+id: 7a932b18-5089-4e78-9e12-d81b498f3910
+status: experimental
+description: |
+  Detects incoming emails originating from legitimate SaaS transactional email services 
+  (such as Zoho Books / Transmail, SendGrid, Mailgun) where the message subject or body 
+  masquerades as an unrelated brand (e.g. Porkbun domain registrar, Microsoft 365, PayPal) 
+  to bypass DMARC/SPF/DKIM enforcement.
+references:
+  - https://github.com/AdelBattah/porkbun-phishing-incident-response
+  - Case Study IR-2026-1115-001
+author: Adel Battah
+date: 2026/11/15
+tags:
+  - attack.initial_access
+  - attack.t1566.002
+  - attack.defense_evasion
+  - attack.t1036.005
+  - attack.resource_development
+  - attack.t1583.006
+logsource:
+  category: email
+  product: mailgateway
+detection:
+  selection_saas_relays:
+    sender_domain|endswith:
+      - 'sender.zohobooks.com'
+      - 'transmail.net'
+      - 'sendgrid.net'
+      - 'mailgun.org'
+      - 'postmarkapp.com'
+  selection_spoofed_brands:
+    subject|contains:
+      - 'Porkbun'
+      - 'Keep your services running smoothly'
+      - 'Domain expiration notice'
+      - 'Renew your domain'
+    body|contains:
+      - 'Porkbun LLC'
+      - 'porkbun.com'
+  filter_legitimate_tenants:
+    sender_address|endswith:
+      - '@porkbun.com'
+  condition: selection_saas_relays and selection_spoofed_brands and not filter_legitimate_tenants
+falsepositives:
+  - Legitimate automated transactional billing from small vendors using third-party accounting platforms (rare for large registrars).
+level: high
