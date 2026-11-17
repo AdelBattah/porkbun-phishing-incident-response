@@ -65,14 +65,25 @@ In November 2026, an adversary launched a targeted spearphishing campaign impers
 
 Immediate active defense measures were executed across registrar, cloud, and hosting providers:
 
-| Provider | Target Entity / Role | Action Taken |
-| :--- | :--- | :--- |
-| **Openprovider** | Registrar for `ecuiliber[.]com` | Abuse escalation filed (Ticket IDs: #83114519, #83114531) |
-| **Newfold Digital / Bluehost** | Host for payload IP `50.6.207.121` | Malicious host report and credential collector suspension |
-| **Google Cloud Trust & Safety** | Apex host IP `35.204.150.5` | Abuse report regarding decoy infrastructure support |
-| **Zoho Corporation** | Abuse Desk (`abuse@zohocorp.com`) | Tenant suspension request for compromised Org `944707351` |
-| **Porkbun LLC** | Impersonated Entity | Security notification regarding brand spoofing campaign |
-| **Google Safe Browsing & Microsoft** | Malicious URLs | Global client-side blacklist submissions |
+| Provider | Target Entity / Role | Action Taken | Status / Resolution |
+| :--- | :--- | :--- | :--- |
+| **Zoho Corporation** | Abuse Desk (`abuse@zohocorp.com`) | Tenant suspension request for compromised Org `944707351` | **CONFIRMED RESOLVED** (Account terminated by Zoho Abuse Desk) |
+| **Openprovider** | Registrar for `ecuiliber[.]com` | Abuse escalation filed (Ticket IDs: #83114519, #83114531) | Escalated to Trust & Safety |
+| **Newfold Digital / Bluehost** | Host for payload IP `50.6.207.121` | Malicious host report and credential collector suspension | Abuse ticket processed |
+| **Google Cloud Trust & Safety** | Apex host IP `35.204.150.5` | Abuse report regarding decoy infrastructure support | Submitted |
+| **Porkbun LLC** | Impersonated Entity | Security notification regarding brand spoofing campaign | Acknowledged |
+| **Google Safe Browsing & Microsoft** | Malicious URLs | Global client-side blacklist submissions | Client-side protection active |
+
+### Confirmed Remediation (Zoho Abuse Desk)
+
+On **16 November 2026**, the **Zoho Abuse Monitoring Desk** confirmed the closure of the fraudulent tenant account:
+
+> *"Thank you for bringing this issue to our attention. The reported account has already been closed from our end."*  
+> — Manikandan R, Zoho Abuse Monitoring Desk
+
+<p align="center">
+  <img src="docs/zoho_abuse_takedown_confirmation.jpg" alt="Zoho Abuse Takedown Confirmation" width="380" />
+</p>
 
 ---
 
