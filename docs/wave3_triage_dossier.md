@@ -13,13 +13,13 @@ Following successful provider remediation against Wave 1 (Zoho Books SaaS tenant
 
 1. **Porkbun Wave 3 (Keep your services running smoothly)**:
    - **Adversary Pivot:** The threat actor transitioned from disposable newly registered domains (NRDs) to **subdomain hijacking on an authentic, aged Danish domain** (wwwaccountv[.]birdwatching[.]dk, apex registered in April 2019 on Punktum.dk).
-   - **Delivery Vector:** Direct SMTP injection from a dedicated French VPS (213[.]156[.]134[.]117, ps125957.serveur-vps.net) using an attacker-controlled high-abuse domain (dmin@paomusic[.]info).
+   - **Delivery Vector:** Direct SMTP injection from a dedicated French VPS (213[.]156[.]134[.]117, vps125957.serveur-vps.net) using an attacker-controlled high-abuse domain (admin@paomusic[.]info).
    - **Infrastructure:** The rogue subdomain wwwaccountv points to Bluehost / Unified Layer (50[.]6[.]207[.]121), where a fresh Let\'s Encrypt TLS certificate was provisioned on November 17, 2026.
    - **MITRE ATT&CK Mapping:** T1584.001 (Compromise Infrastructure: Domains), T1566.002 (Spearphishing Link), T1036.005 (Masquerading), T1588.004 (Digital Certificates).
 
 2. **Unrelated Financial Blast (You\'ve received a payment)**:
    - **Brand Target:** PayPal brand impersonation (uservice@info[.]net).
-   - **Payload Host:** mxloads[.]com/ppnew/index[.]html (Registered via PublicDomainRegistry, cloaked behind Cloudflare).
+   - **Payload Host:** bmxloads[.]com/ppnew/index[.]html (Registered via PublicDomainRegistry, cloaked behind Cloudflare).
    - **Originating MTA:** Direct connection from Ukrainian ISP host 91[.]201[.]177[.]224 (metallist[.]dn[.]ua).
    - **Separation Note:** This campaign is isolated from the Porkbun longitudinal case study and is cataloged below strictly for external abuse takedown submission.
 
@@ -29,14 +29,12 @@ Following successful provider remediation against Wave 1 (Zoho Books SaaS tenant
 
 | Target Role | Defanged IOC / Identifier | Resolved IP / ASN | TLS / Metadata | Verified Abuse Contact / Web Portal |
 | :--- | :--- | :--- | :--- | :--- |
-| **Wave 3 Payload Subdomain** | hxxps://wwwaccountv[.]birdwatching[.]dk | 50[.]6[.]207[.]121<br>AS46606 (Unified Layer / Bluehost) | **Let\'s Encrypt**<br>Issued: 2026-11-17 02:48:47 GMT<br>SHA-256: 536e239e20a7c2c33daed189fd661e5b15248250b6f8dd4bd0e2488ce2b82493 | IARPOC@Newfold.com<br>buse@bluehost.com<br>Portal: https://www.bluehost.com/abuse |
-| **Wave 3 Apex Domain (Compromised)** | irdwatching[.]dk | 50[.]6[.]207[.]121<br>Nameservers: 
-s01.one.com, 
-s02.one.com | **Punktum.dk**<br>Registered: 2019-04-02<br>Registrant: Marit Beckmann, Kruså, DK | buse@one.com<br>buse@punktum.dk<br>Portal: https://punktum.dk/en/contact-us |
-| **Wave 3 Sending MTA (VPS)** | 213[.]156[.]134[.]117<br>PTR: ps125957[.]serveur-vps[.]net | 213[.]156[.]134[.]117<br>AS210403 (Ligne Web Services SAS) | Direct SMTP Injection<br>HELO: mail.paomusic.info | buse@lws.fr |
-| **Wave 3 Sender Domain** | paomusic[.]info<br>Sender: dmin@paomusic[.]info | Nameservers:<br>alentin.ns.cloudflare.com<br>leena.ns.cloudflare.com | Registrar: Cronon GmbH / Strato AG<br>Registry: Identity Digital | buse@strato.de<br>buse@cronon.net<br>Portal: https://abuse.cloudflare.com |
-| **Impersonated Brand (Porkbun)** | Porkbun LLC (porkbun.com) | Brand Target | Security / Abuse Notification | buse+aug26@porkbun.com<br>security@porkbun.com |
-| **PayPal Lure Payload Domain** | hxxps://bmxloads[.]com/ppnew/index[.]html | 104[.]21[.]51[.]14<br>172[.]67[.]216[.]160<br>AS13335 (Cloudflare) | Registrar: PDR Ltd. d/b/a PublicDomainRegistry.com | buse-contact@publicdomainregistry.com<br>Portal: https://publicdomainregistry.com/report-abuse/<br>Portal: https://abuse.cloudflare.com |
+| **Wave 3 Payload Subdomain** | hxxps://wwwaccountv[.]birdwatching[.]dk | 50[.]6[.]207[.]121<br>AS46606 (Unified Layer / Bluehost) | **Let\'s Encrypt**<br>Issued: 2026-11-17 02:48:47 GMT<br>SHA-256: 536e239e20a7c2c33daed189fd661e5b15248250b6f8dd4bd0e2488ce2b82493 | IARPOC@Newfold.com<br>abuse@bluehost.com<br>Portal: https://www.bluehost.com/abuse |
+| **Wave 3 Apex Domain (Compromised)** | birdwatching[.]dk | 50[.]6[.]207[.]121<br>Nameservers: ns01.one.com, ns02.one.com | **Punktum.dk**<br>Registered: 2019-04-02<br>Registrant: Marit Beckmann, Kruså, DK | abuse@one.com<br>abuse@punktum.dk<br>Portal: https://punktum.dk/en/contact-us |
+| **Wave 3 Sending MTA (VPS)** | 213[.]156[.]134[.]117<br>PTR: vps125957[.]serveur-vps[.]net | 213[.]156[.]134[.]117<br>AS210403 (Ligne Web Services SAS) | Direct SMTP Injection<br>HELO: mail.paomusic.info | abuse@lws.fr |
+| **Wave 3 Sender Domain** | paomusic[.]info<br>Sender: admin@paomusic[.]info | Nameservers:<br>valentin.ns.cloudflare.com<br>aleena.ns.cloudflare.com | Registrar: Cronon GmbH / Strato AG<br>Registry: Identity Digital | abuse@strato.de<br>abuse@cronon.net<br>Portal: https://abuse.cloudflare.com |
+| **Impersonated Brand (Porkbun)** | Porkbun LLC (porkbun.com) | Brand Target | Security / Abuse Notification | abuse+aug26@porkbun.com<br>security@porkbun.com |
+| **PayPal Lure Payload Domain** | hxxps://bmxloads[.]com/ppnew/index[.]html | 104[.]21[.]51[.]14<br>172[.]67[.]216[.]160<br>AS13335 (Cloudflare) | Registrar: PDR Ltd. d/b/a PublicDomainRegistry.com | abuse-contact@publicdomainregistry.com<br>Portal: https://publicdomainregistry.com/report-abuse/<br>Portal: https://abuse.cloudflare.com |
 | **PayPal Lure Sending Host** | 91[.]201[.]177[.]224<br>PTR: metallist[.]dn[.]ua | 91[.]201[.]177[.]224<br>AS39906 (Promtelecom, Kyiv, UA) | Direct SMTP Injection<br>From: uservice@info[.]net | spam@promtele.com |
 | **Impersonated Financial Brand** | PayPal Inc. (paypal.com) | Brand Target | Security / Fraud Escalation | phishing@paypal.com<br>spoof@paypal.com |
 
@@ -45,12 +43,12 @@ s02.one.com | **Punktum.dk**<br>Registered: 2019-04-02<br>Registrant: Marit Beck
 ## 3. Automated Forensic Parser Output (src/eml_ioc_extractor.py)
 
 The following structured telemetry was automatically generated using:
-`ash
+```bash
 python src/eml_ioc_extractor.py --enrich --sanitize
-`
+```
 *Note: All recipient email addresses and internal domain names have been scrubbed to conform to TLP:CLEAR distribution.*
 
-`json
+```json
 [
   {
     "file": "incident_email3_birdwatching_sanitized.eml",
@@ -327,4 +325,4 @@ python src/eml_ioc_extractor.py --enrich --sanitize
     ]
   }
 ]
-`
+```
