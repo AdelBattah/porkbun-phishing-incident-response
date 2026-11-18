@@ -59,6 +59,14 @@ In November 2026, an adversary launched a targeted spearphishing campaign impers
 3. **Repetition-Based Typosquatting**:
    - Subdomain label `wwaccoountv` used repeated characters (`ww`, `ccoou`) to evade automated token-based lexicon filters while visually appearing plausible to hurried users.
 
+### Campaign Evolution: Wave 3 Adversary Pivot (Subdomain Hijacking)
+
+Following the takedown of the abused Zoho Books tenant and registrar escalation against `ecuiliber[.]com`, the adversary adapted their tactics in **Wave 3** (November 17, 2026):
+
+- **Delivery Pivot to Direct VPS**: Switched delivery from SaaS relays to direct SMTP injection from a dedicated French VPS (`213[.]156[.]134[.]117`, `vps125957.serveur-vps.net`) using an attacker-controlled high-abuse domain (`admin@paomusic[.]info`).
+- **Subdomain Hijacking on Aged Infrastructure (`T1584.001`)**: Rather than purchasing fresh throwaway domains that trigger newly-registered domain (NRD) security filters, the adversary compromised the DNS/hosting of an authentic Danish domain (`birdwatching[.]dk`, registered in April 2019 via Punktum.dk).
+- **Rogue Certificate Provisioning**: The threat actor spawned a rogue subdomain `wwwaccountv[.]birdwatching[.]dk` on Bluehost / Unified Layer (`50.6.207.121`), provisioning a fresh Let's Encrypt TLS certificate on November 17, 2026 (valid for 90 days) to harvest Porkbun account credentials under the guise of an authentic, aged root domain.
+
 ---
 
 ## Incident Response & Takedown Actions
@@ -67,11 +75,11 @@ Immediate active defense measures were executed across registrar, cloud, and hos
 
 | Provider | Target Entity / Role | Action Taken | Status / Resolution |
 | :--- | :--- | :--- | :--- |
-| **Zoho Corporation** | Abuse Desk (`abuse@zohocorp.com`) | Tenant suspension request for compromised Org `944707351` | **CONFIRMED RESOLVED** (Account terminated by Zoho Abuse Desk) |
-| **Openprovider** | Registrar for `ecuiliber[.]com` | Abuse escalation filed (Ticket IDs: #83114519, #83114531) | Escalated to Trust & Safety |
-| **Newfold Digital / Bluehost** | Host for payload IP `50.6.207.121` | Malicious host report and credential collector suspension | Abuse ticket processed |
+| **Zoho Corporation** | Abuse Desk (`abuse@zohocorp.com`) | Tenant suspension request for compromised Org `944707351` | **CONFIRMED RESOLVED** (Account terminated via Ticket ## 6062928 ##) |
+| **Openprovider** | Registrar for `ecuiliber[.]com` | Abuse escalation filed (Ticket IDs: #83114519, #83114531) | Escalated to Trust & Safety for domain suspension |
+| **Newfold Digital / Bluehost** | Host for payload IP `50.6.207.121` | Malicious host report and credential collector suspension | 48-Hour Enforcement Notice issued (Case `ABU-203143`) |
 | **Google Cloud Trust & Safety** | Apex host IP `35.204.150.5` | Abuse report regarding decoy infrastructure support | Submitted |
-| **Porkbun LLC** | Impersonated Entity | Security notification regarding brand spoofing campaign | Acknowledged |
+| **Porkbun LLC** | Impersonated Entity | Security notification regarding brand spoofing campaign | **CONFIRMED ACKNOWLEDGED** (Internal security tracking) |
 | **Google Safe Browsing & Microsoft** | Malicious URLs | Global client-side blacklist submissions | Client-side protection active |
 
 ### Confirmed Remediation (Zoho Abuse Desk)
@@ -93,7 +101,8 @@ On **16 November 2026**, the **Zoho Abuse Monitoring Desk** confirmed the closur
 | :--- | :--- | :--- | :--- |
 | **Resource Development** | `T1583.001` | Acquire Infrastructure: Domains | Registration of `ecuiliber[.]com` via Openprovider |
 | **Resource Development** | `T1583.006` | Acquire Infrastructure: Web Services | Exploitation of Zoho Books transactional relay |
-| **Resource Development** | `T1588.004` | Obtain Capabilities: Digital Certificates | Short-lived Let's Encrypt TLS certificate |
+| **Resource Development** | `T1584.001` | Compromise Infrastructure: Domains | Subdomain hijacking on legitimate domain `birdwatching[.]dk` (Wave 3) |
+| **Resource Development** | `T1588.004` | Obtain Capabilities: Digital Certificates | Short-lived Let's Encrypt TLS certificates |
 | **Initial Access** | `T1566.002` | Phishing: Spearphishing Link | Lure directing victim to fake payment review portal |
 | **Defense Evasion** | `T1036.005` | Masquerading: Match Legitimate Name | Display name spoofing (*"Support Team"* / *"Porkbun"*) |
 | **Credential Access** | `T1114` | Email Collection | Harvesting credentials through spoofed authentication form |

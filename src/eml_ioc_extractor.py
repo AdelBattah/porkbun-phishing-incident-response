@@ -541,26 +541,32 @@ def sanitize_report_pii(report: dict) -> dict:
     """Masks recipient email addresses in headers and IOCs for public artifact release."""
     sanitized = json.loads(json.dumps(report))
     target_emails = set()
-    for hdr_key in ("to", "reply_to", "return_path"):
+    for hdr_key in ("to", "reply_to", "return_path", "delivered_to"):
         val = sanitized["headers"].get(hdr_key, "")
         _, email_addr = parseaddr(val)
-        if email_addr and not any(email_addr.endswith(dom) for dom in ("paomusic.info", "ecuiliber.com", "transmail.net")):
+        if email_addr and not any(email_addr.endswith(dom) for dom in ("paomusic.info", "ecuiliber.com", "transmail.net", "info.net")):
             target_emails.add(email_addr.lower())
 
-    for target in target_emails:
-        if target:
-            # Replace in headers
-            for k in sanitized["headers"]:
-                if isinstance(sanitized["headers"][k], str) and target in sanitized["headers"][k].lower():
-                    sanitized["headers"][k] = re.sub(re.escape(target), "analyst-trap@victim-domain.internal", sanitized["headers"][k], flags=re.IGNORECASE)
-            # Replace in IOC email lists
-            sanitized["iocs"]["email_addresses"] = [
-                "analyst-trap@victim-domain.internal" if e.lower() == target else e
-                for e in sanitized["iocs"]["email_addresses"]
-            ]
+    # Check for personal / recipient emails inside all extracted emails
+    for e in sanitized["iocs"].get("email_addresses", []):
+        if not any(e.lower().endswith(dom) for dom in ("paomusic.info", "ecuiliber.com", "transmail.net", "porkbun.com", "porkbun-email.com", "info.net")):
+            target_emails.add(e.lower())
 
-    # Deduplicate emails after sanitization
-    sanitized["iocs"]["email_addresses"] = sorted(set(sanitized["iocs"]["email_addresses"]))
+    def _scrub_obj(obj, targets):
+        if isinstance(obj, str):
+            res = obj
+            for t in targets:
+                if t and t in res.lower():
+                    res = re.sub(re.escape(t), "analyst-trap@victim-soc.internal", res, flags=re.IGNORECASE)
+            return res
+        elif isinstance(obj, list):
+            return [_scrub_obj(item, targets) for item in obj]
+        elif isinstance(obj, dict):
+            return {k: _scrub_obj(v, targets) for k, v in obj.items()}
+        return obj
+
+    sanitized = _scrub_obj(sanitized, target_emails)
+    sanitized["iocs"]["email_addresses"] = sorted(set(sanitized["iocs"].get("email_addresses", [])))
     return sanitized
 
 

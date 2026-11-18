@@ -1,0 +1,214 @@
+Delivered-To: analyst-trap@victim-soc.internal
+Received: by 2002:a05:6400:8584:20b0:2e8:3c58:2cfc with SMTP id x4-n2csp3399614eck;
+        Mon, 16 Nov 2026 20:36:48 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AL+hErFvZhlV3BzUqE0eudBovgXkEsTU+MWmvS2vO8l1rAT+WCOWA5Wt07T0HDYbR6JKsMo16J024b0Jn9qUp3c=@gmail.com
+X-Received: by 2002:a05:6a21:4985:b0:3fa:df2d:d3dd with SMTP id adf61e73a8af0-3fadf2dd960mr5043942637.20.1794890208204;
+        Mon, 16 Nov 2026 20:36:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794890208; cv=none;
+        d=google.com; s=arc-20260327;
+        b=FT78RaN1Rt0w9g5aDadqpvgR+7Iq2myfupZvbAG+VjYvcChFFkFSaKbR0EB589lzUP
+         gpb7CjDikG4nTdXzpLb+UH2yBSSPtNAgtLcWKdyRLqW5o5eoNa/GAixX6/p7VpkU5V0B
+         Y9e0W41af0v2+hJWQ30/SHuPmQVH4eVrpw0hyG4KeroOa6DDYcZiqjSplZRyDh5YO4UC
+         uPrcd7I/JlheEmD2boX/y6Q6QaATyT1pbmVcPG1rGCbHRA+LZNiA5E94xLEdw37qJy+z
+         Tv7nNWSUM6dVuanKUFkPzJVlt1ybQfTvtskaoAtrHJElluFxuGA5rAHWWYA4lUdcUOvq
+         riqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:dkim-signature;
+        bh=CuY2vRfU+sOSytgFrNhxRi28PN4A3JPPEQXSShb11DQ=;
+        fh=a2kTsJEUzgjNjV6pTCR0NkqYT8BxJ8CAMiGf7AhsoCI=;
+        b=iHBPgSdUI5F2QGxaMQm1pDMUW08h7YgK4fY7eT00QktlatK/IFZUi7kPwA2Jk6maWa
+         fEzsZomtsRlFQ9yGNszK2W851NK+8X6gwO20yosXy0Rfoee5y7EFGNKZ7WbZsM1OwB0N
+         eA9M0MiU+PbD2xYFieVspSg3rPBdfnsMTuePZw3nMRPl+YiVXZfESq05R2IseKr1V9gs
+         MhYBvGmiTEny7nthaiN8C2BOv/Gg4J99TEiXHVC1PqaM9vfw4bpuIMO5W3QCNkHXJ8QL
+         byGrOUrW4Ejk/F2H5+Tpj+gUnPQjqMgzCH555MafhWwFCzSUYj9DJDPi3aavQ7nOnFjn
+         G4nQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@paomusic.info header.s=dkim header.b=dAdt3NFV;
+       spf=pass (google.com: domain of srs0=8hzf=jg=paomusic.info=admin@porkbun-email.com designates 44.226.226.6 as permitted sender) smtp.mailfrom="SRS0=8Hzf=JG=paomusic.info=admin@porkbun-email.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=paomusic.info
+Return-Path: <SRS0=8Hzf=JG=paomusic.info=admin@porkbun-email.com>
+Received: from fwd1.porkbun.com (fwd1.porkbun.com. [44.226.226.6])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-8bed31ef663si24236465b3a.67.2026.11.16.20.36.47
+        for <analyst-trap@victim-soc.internal>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2026 20:36:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of srs0=8hzf=jg=paomusic.info=admin@porkbun-email.com designates 44.226.226.6 as permitted sender) client-ip=44.226.226.6;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@paomusic.info header.s=dkim header.b=dAdt3NFV;
+       spf=pass (google.com: domain of srs0=8hzf=jg=paomusic.info=admin@porkbun-email.com designates 44.226.226.6 as permitted sender) smtp.mailfrom="SRS0=8Hzf=JG=paomusic.info=admin@porkbun-email.com";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=paomusic.info
+Received: from mail.paomusic.info (vps125957.serveur-vps.net [213.156.134.117])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by fwd1.porkbun.com (Postfix) with ESMTPS id 5A8CD4018F60
+	for <billing-contact@victim-domain.internal>; Tue, 17 Nov 2026 04:36:46 +0000 (UTC)
+Authentication-Results: fwd1.porkbun.com;
+	dkim=pass header.d=paomusic.info header.s=dkim header.b=dAdt3NFV;
+	dmarc=pass (policy=none) header.from=paomusic.info;
+	spf=pass (fwd1.porkbun.com: domain of admin@paomusic.info designates 213.156.134.117 as permitted sender) smtp.mailfrom=admin@paomusic.info
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=dkim; d=paomusic.info;
+ h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:
+ Content-Transfer-Encoding; i=admin@paomusic.info;
+ bh=CuY2vRfU+sOSytgFrNhxRi28PN4A3JPPEQXSShb11DQ=;
+ b=dAdt3NFV0fEIP+/BEA7NVw8kcKyt13PSgHhKY0kQ4WeAlFG/0E7yIO833QpsfAFz4zg7Ilr5W7m/
+   wDQxDrV0Ze9mmljsbMJUJXnWPY09tZQVopQD3D2hl67Ao/Zv/AdM7w8OPjZemMWqxs7RA4VAynjB
+   NmwCR1TDzstM/fDdFL8yhqNzBiMJgOc3JcyQdbZun84KXM56wGKqSgaDBw9Oxm0ow8MzGpU5Rk6q
+   CabQPOLqcAukxOUZryVgydw30ljXg1fqg2kBAv62FvpsxTOibHZfa6TJ1MPMsTCgyPM9fVVDUu23
+   XrUjECgWJtTyqSPMBwXAcy8Zy9j08ftrmPcJvA==
+From: "Support Team" <admin@paomusic.info>
+To: billing-contact@victim-domain.internal
+Subject: Keep your services running smoothly
+Date: 17 Nov 2026 04:36:43 +0000
+Message-ID: <20261117043445.8E2822CB5DB6BFA1@paomusic.info>
+MIME-Version: 1.0
+Content-Type: text/html
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.10
+X-Rspamd-Queue-Id: 5A8CD4018F60
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-0.10 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[paomusic.info,none];
+	HFILTER_HOSTNAME_1(0.50)[vps125957.serveur-vps.net];
+	R_DKIM_ALLOW(-0.20)[paomusic.info:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:213.156.134.117:c];
+	MIME_HTML_ONLY(0.20)[];
+	ONCE_RECEIVED(0.10)[];
+	ARC_NA(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:210403, ipnet:213.156.134.0/24, country:FR];
+	MIME_TRACE(0.00)[0:~];
+	RCVD_COUNT_ZERO(0.00)[0];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_ONE(0.00)[1];
+	TO_DN_NONE(0.00)[];
+	URIBL_BLOCKED(0.00)[porkbun.com:email,vps125957.serveur-vps.net:rdns,paomusic.info:from_smtp,paomusic.info:from_mime,paomusic.info:dkim,paomusic.info:mid,mail.paomusic.info:helo,birdwatching.dk:url];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_TRACE(0.00)[paomusic.info:+]
+X-Spamd-Bar: /
+X-Rspamd-Server: ip-172-31-33-6
+
+<!DOCTYPE html>
+<html lang=3D"en">
+<head>
+  <meta charset=3D"UTF-8">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+  <title>Porkbun &middot; Payment method update</title>
+</head>
+<body style=3D"margin: 0; padding: 24px 16px; background-color: #f4f4f4; fo=
+nt-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica=
+, Arial, sans-serif; line-height: 1.5; color: #222222;">
+
+  <div style=3D"max-width: 580px; margin: 0 auto; background: #ffffff; bord=
+er-radius: 3px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); overflow: hidde=
+n; border: 1px solid #e0e0e0;">
+
+    <!-- Header -->
+    <div style=3D"background: #ffffff; padding: 28px 32px 24px 32px; border=
+-bottom: 2px solid #EF7878; text-align: left;">
+      <h1 style=3D"font-size: 26px; font-weight: 600; letter-spacing: -0.02=
+em; color: #222222; margin: 0; line-height: 1.2;">
+        <span style=3D"color: #EF7878;">Porkbun</span> &#128055;
+      </h1>
+      <div style=3D"font-size: 14px; color: #555; margin-top: 4px; font-wei=
+ght: 400;">
+        Domains &middot; Hosting &middot; Email
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div style=3D"padding: 36px 32px 32px 32px; background: #ffffff;">
+
+      <div style=3D"font-size: 18px; font-weight: 600; margin-bottom: 16px;=
+ color: #222222;">
+        Dear Customer,
+      </div>
+
+      <p style=3D"font-size: 15px; margin: 0 0 20px 0; color: #333333;">
+        We are contacting you to inform you that the payment method current=
+ly
+        registered on your account was unable to be processed during our mo=
+st
+        recent billing attempt.
+      </p>
+
+      <p style=3D"font-size: 15px; margin: 0 0 20px 0; color: #333333;">
+        This situation typically occurs for one of the following reasons: t=
+he
+        card on file has reached its expiration date, or the issuing bank
+        declined the transaction due to a security verification, insufficie=
+nt
+        funds, or an international restriction.
+      </p>
+
+      <p style=3D"font-size: 15px; margin: 0 0 20px 0; color: #333333;">
+        Should you wish to review or update your billing information, you m=
+ay
+        access your account page directly using the button provided below.
+      </p>
+
+      <!-- CTA -->
+      <div style=3D"text-align: center; margin: 28px 0 24px 0;">
+        <a href=3D"https://wwwaccountv.birdwatching.dk" style=3D"display: i=
+nline-block; background: #EF7878; color: #ffffff; font-weight: 600; font-si=
+ze: 15px; padding: 12px 28px; border-radius: 3px; text-decoration: none; le=
+tter-spacing: 0.2px; border: 1px solid #EF7878; cursor: pointer;">
+          Review payment method
+        </a>
+      </div>
+
+      <div style=3D"height: 1px; background: #e8e8e8; margin: 24px 0 20px 0=
+;"></div>
+
+      <p style=3D"font-size: 15px; margin: 0 0 20px 0; color: #333333;">
+        Maintaining a valid payment method allows us to renew your domains =
+and
+        services automatically, ensuring that your account remains in good
+        standing without interruption.
+      </p>
+
+    </div>
+
+    <!-- Footer -->
+    <div style=3D"font-size: 14px; color: #555; background: #fcfcfc; paddin=
+g: 24px 32px 28px 32px; border-top: 1px solid #eaeaea;">
+
+      <p style=3D"margin: 0 0 8px 0; font-size: 14px; color: #555;">
+        Thank you for your continued trust. <span style=3D"font-size: 20px;=
+ vertical-align: middle;">&#128055;</span>
+      </p>
+      <p style=3D"font-weight: 600; color: #222222; margin: 12px 0 8px 0; f=
+ont-size: 14px;">
+        &#8212; The Porkbun Team
+      </p>
+      <p style=3D"margin: 18px 0 8px 0; font-size: 14px; color: #555;">
+        <a href=3D"#" style=3D"color: #222222; font-weight: 500; text-decor=
+ation: underline; text-decoration-color: #EF7878; text-underline-offset: 2p=
+x;">My account</a> &nbsp;&#8226;&nbsp;
+        <a href=3D"#" style=3D"color: #222222; font-weight: 500; text-decor=
+ation: underline; text-decoration-color: #EF7878; text-underline-offset: 2p=
+x;">Billing help</a> &nbsp;&#8226;&nbsp;
+        <a href=3D"#" style=3D"color: #222222; font-weight: 500; text-decor=
+ation: underline; text-decoration-color: #EF7878; text-underline-offset: 2p=
+x;">Contact support</a>
+      </p>
+
+      <div style=3D"font-size: 13px; color: #777; margin-top: 20px; padding=
+-top: 16px; border-top: 1px dashed #e0e0e0;">
+        For any questions, please reply to this email or contact us at
+        <a href=3D"mailto:support@porkbun.com" style=3D"color: #EF7878; fon=
+t-weight: 500;">support@porkbun.com</a>.
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
