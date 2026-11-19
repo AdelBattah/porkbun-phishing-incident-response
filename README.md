@@ -76,22 +76,31 @@ Immediate active defense measures were executed across registrar, cloud, and hos
 | Provider | Target Entity / Role | Action Taken | Status / Resolution |
 | :--- | :--- | :--- | :--- |
 | **Zoho Corporation** | Abuse Desk (`abuse@zohocorp.com`) | Tenant suspension request for compromised Org `944707351` | **CONFIRMED RESOLVED** (Account terminated via Ticket ## 6062928 ##) |
+| **Newfold Digital / Bluehost** | Host for payload IP `50.6.207.121` | Suspension request for rogue `wwwaccountv[.]birdwatching[.]dk` | **CONFIRMED RESOLVED** (Rogue phishing site suspended via Case `ABU-204035`) |
+| **One.com Abuse Desk** | Nameservers & Host for compromised `birdwatching[.]dk` | Domain compromise & DNS hijack report | **CONFIRMED RESOLVED** (Compromised account suspended pending review via Case `one#43272064`) |
+| **STRATO GmbH / Cronon** | Registrar for sending domain `paomusic[.]info` | Abuse report for outbound spam & registrar review | **ACTIVE INVESTIGATION** (Registrar abuse review active via `AID:B47EF8Mk1DMTQ4NzEwMg`) |
 | **Openprovider** | Registrar for `ecuiliber[.]com` | Abuse escalation filed (Ticket IDs: #83114519, #83114531) | Escalated to Trust & Safety for domain suspension |
-| **Newfold Digital / Bluehost** | Host for payload IP `50.6.207.121` | Malicious host report and credential collector suspension | 48-Hour Enforcement Notice issued (Case `ABU-203143`) |
 | **Google Cloud Trust & Safety** | Apex host IP `35.204.150.5` | Abuse report regarding decoy infrastructure support | Submitted |
 | **Porkbun LLC** | Impersonated Entity | Security notification regarding brand spoofing campaign | **CONFIRMED ACKNOWLEDGED** (Internal security tracking) |
 | **Google Safe Browsing & Microsoft** | Malicious URLs | Global client-side blacklist submissions | Client-side protection active |
 
-### Confirmed Remediation (Zoho Abuse Desk)
+### Confirmed Remediation & Takedown Proof
 
-On **16 November 2026**, the **Zoho Abuse Monitoring Desk** confirmed the closure of the fraudulent tenant account:
-
-> *"Thank you for bringing this issue to our attention. The reported account has already been closed from our end."*  
-> — Manikandan R, Zoho Abuse Monitoring Desk
+- **Wave 1 (Zoho Abuse Monitoring Desk)**: Compromised tenant terminated on **16 November 2026** (Ticket `## 6062928 ##`):
+  > *"Thank you for bringing this issue to our attention. The reported account has already been closed from our end."*  
+  > — Manikandan R, Zoho Abuse Monitoring Desk
 
 <p align="center">
   <img src="docs/zoho_abuse_takedown_confirmation.jpg" alt="Zoho Abuse Takedown Confirmation" width="380" />
 </p>
+
+- **Wave 3 (Bluehost / Newfold Digital)**: Rogue phishing site `wwwaccountv[.]birdwatching[.]dk` on `50.6.207.121` suspended on **19 November 2026** (Case `ABU-204035`):
+  > *"We have suspended the website. I hope this information has been helpful."*  
+  > — Jerald R, Abuse Specialist, Newfold Digital / Bluehost
+
+- **Wave 3 (One.com Abuse Department)**: Compromised domain account suspended on **19 November 2026** (Case `one#43272064`):
+  > *"Thank you for reporting this issue. The account has been suspended pending further investigation."*  
+  > — One.com Abuse Department
 
 ---
 
